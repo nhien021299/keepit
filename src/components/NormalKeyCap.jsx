@@ -12,66 +12,69 @@ export function NormalKeyCap(props) {
     const [rough, setRoughness] = useState(1);
     const [metal, setMetalness] = useState(1);
 
-    // useControls({
-    //     vertical:{
-    //         min:-1,
-    //         max:1,
-    //         value:0,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setPos((pos) => [pos[0], value, pos[2]])
-    //         }
-    //     },
-    //     horizontal: {
-    //         min:-1,
-    //         max:1,
-    //         value:0,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setPos((pos) => [value, pos[1], pos[2]])
-    //         }
-    //     },
-    //     depth: {
-    //         min:0.6,
-    //         max:2.3,
-    //         value:1.45,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setPos((pos) => [pos[0], pos[1], value])
-    //         }
-    //     },
-    //     scale: {
-    //         min:0,
-    //         max:2,
-    //         value:1,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setScale(() => value)
-    //         }
-    //     },
-    //     rough: {
-    //         min:0,
-    //         max:1,
-    //         value:1,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setRoughness(()=>value)
-    //         }
-    //     },
-    //     metal: {
-    //         min:0,
-    //         max:1,
-    //         value:1,
-    //         step:0.01,
-    //         onChange: (value)=>{
-    //             setMetalness(()=>value)
-    //         }
-    //     },
-    // })
+    const ratio = 1.8;
+
+    useControls({
+        // vertical:{
+        //     min:-1,
+        //     max:1,
+        //     value:0,
+        //     step:0.01,
+        //     onChange: (value)=>{
+        //         setPos((pos) => [pos[0], value, pos[2]])
+        //     }
+        // },
+        // horizontal: {
+        //     min:-1,
+        //     max:1,
+        //     value:0,
+        //     step:0.01,
+        //     onChange: (value)=>{
+        //         setPos((pos) => [value, pos[1], pos[2]])
+        //     }
+        // },
+        // depth: {
+        //     min:0.6,
+        //     max:2.3,
+        //     value:1.45,
+        //     step:0.01,
+        //     onChange: (value)=>{
+        //         setPos((pos) => [pos[0], pos[1], value])
+        //     }
+        // },
+        // scale: {
+        //     min:0,
+        //     max:2,
+        //     value:1,
+        //     step:0.01,
+        //     onChange: (value)=>{
+        //         setScale(() => value)
+        //     }
+        // },
+        rough: {
+            min:0,
+            max:1,
+            value:1,
+            step:0.01,
+            onChange: (value)=>{
+                setRoughness(()=>value)
+            }
+        },
+        metal: {
+            min:0,
+            max:1,
+            value:1,
+            step:0.01,
+            onChange: (value)=>{
+                setMetalness(()=>value)
+            }
+        },
+    })
 
     return (
         <group {...props} dispose={null}>
-        <group rotation={[-Math.PI / 2, 0, 0]}>
+        <group rotation={[-Math.PI / 2, 0, 0]}
+        position={[1,0,0]}>
           <mesh
             castShadow
             receiveShadow
@@ -89,17 +92,16 @@ export function NormalKeyCap(props) {
             receiveShadow
             geometry={nodes.Object_2004_2.geometry}
           >
-          <meshBasicMaterial/>
-            <Decal
+           <meshBasicMaterial roughness={rough} metalness={metal}/>
+              <Decal
                 debug
+                position={[-1.5, 0, 0]} // Position of the decal
+                rotation={[0, 0, 0]} // Rotation of the decal (can be a vector or a degree in radians)
+                scale={[3.2, 3.2 / ratio ,1]} // Scale of the decal
                 map={texture}
                 polygonOffset
                 polygonOffsetFactor={-1}
-                scale={1}
-                position={[-1,0.4,0]}
-                rotation={[0,0,0]}
-            />
-
+              />
           </mesh>
         </group>
       </group>
