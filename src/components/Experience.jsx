@@ -6,7 +6,7 @@ const Experience = () => {
         <>
             <OrbitControls />
             <directionalLight castShadow position={[1,2,3]} intensity={1}/>
-            <ambientLight intensity={0.5}/>
+            <ambientLight intensity={0.25}/>
             
             <NormalKeyCap />
             
