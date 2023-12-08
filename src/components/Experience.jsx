@@ -1,20 +1,18 @@
-import { ContactShadows, Environment, OrbitControls, useTexture } from "@react-three/drei";
+import { Environment, OrbitControls,ContactShadows } from "@react-three/drei";
 import { NormalKeyCap } from "./NormalKeyCap";
+import { BaseKeyBoard } from "./BaseKeyBoard";
 
 const Experience = () => {
-    return (
-        <>
-            <OrbitControls />
-            <directionalLight castShadow position={[1,2,3]} intensity={1}/>
-            <ambientLight intensity={0.25}/>
-            
-            <NormalKeyCap />
-            
-            <ContactShadows position-y={-0.5} opacity={0.1} blur={2}/>
-            <Environment preset="city"/>
-        </>
-     
-    );
-}
+  return (
+    <>
+      <OrbitControls />
+      <BaseKeyBoard />
+      {/* <NormalKeyCap /> */}
+
+      <ContactShadows position-y={-0.5} opacity={0.1} blur={1}/>
+      <Environment preset="studio"/>
+    </>
+  );
+};
 
 export default Experience;
